@@ -13,7 +13,7 @@ public class Main extends JFrame {
     public Main(){
         setTitle("бродилка");
         setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
-        setSize(320,345);
+        setSize(340,360);//320, 345
         setLocation(400,400);
         add(new GameField());
         setVisible(true);
