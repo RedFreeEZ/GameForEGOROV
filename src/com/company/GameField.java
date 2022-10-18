@@ -46,11 +46,11 @@ public class GameField extends JPanel implements ActionListener {
                     objects[i][j] = "W";
                 } else {
                     objects[i][j] = "B";
-                    if (objects[0][1] == "B") {
+                    if (objects[0][1] == objects[i][j]) {
                         objects[0][1] = "G";
                     }
                 }
-
+                objects[0][1] = "G";
             }
         }
     }
@@ -177,42 +177,53 @@ public class GameField extends JPanel implements ActionListener {
 
     public String checkStone() {
         if (right == true && left == false) {
-
-            nexX = ((x[0]) / DotSize + 1);
-            nexY = ((y[0]) / DotSize);
-            xl = objects[nexY][nexX];
-            if (xl.equals("B")) {
+            if (nexX < 9) {
+                nexX = ((x[0]) / DotSize + 1);
+                nexY = ((y[0]) / DotSize);
+                xl = objects[nexY][nexX];
+                if (xl.equals("B")) {
+                    IsStone = true;
+                }
+            } else {
                 IsStone = true;
             }
 
         } else if (left == true && right == false) {
-            nexX = ((x[0]) / DotSize - 1);
-            nexY = ((y[0]) / DotSize);
-            xl = objects[nexY][nexX];
-            if (xl.equals("B")) {
+            if (nexX > 0) {
+                nexX = ((x[0]) / DotSize - 1);
+                nexY = ((y[0]) / DotSize);
+                xl = objects[nexY][nexX];
+                if (xl.equals("B")) {
+                    IsStone = true;
+                }
+            } else {
                 IsStone = true;
             }
         } else if (up == true && down == false) {
-
-            nexX = ((x[0]) / DotSize);
-            nexY = ((y[0]) / DotSize - 1);
-            xl = objects[nexY][nexX];
-            if (xl.equals("B")) {
+            if (nexY > 0) {
+                nexX = ((x[0]) / DotSize);
+                nexY = ((y[0]) / DotSize - 1);
+                xl = objects[nexY][nexX];
+                if (xl.equals("B")) {
+                    IsStone = true;
+                }
+            } else {
                 IsStone = true;
             }
 
 
         } else if (down == true && up == false) {
-
-            nexX = ((x[0]) / DotSize);
-            nexY = ((y[0]) / DotSize + 1);
-            xl = objects[nexY][nexX];
-            if (xl.equals("B")) {
+            if (nexY < 9) {
+                nexX = ((x[0]) / DotSize);
+                nexY = ((y[0]) / DotSize + 1);
+                System.out.println(nexY);
+                xl = objects[nexY][nexX];
+                if (xl.equals("B")) {
+                    IsStone = true;
+                }
+            } else {
                 IsStone = true;
-
             }
-
-
         }
         // System.out.print(xl);
         return xl;
@@ -222,26 +233,28 @@ public class GameField extends JPanel implements ActionListener {
     //Проверка не наткнулись ли на память
     public void checkPoint() {
         //  for (int i = 0; i < dots; i++) {
+
         pX = ((x[0]) / DotSize);
         pY = ((y[0]) / DotSize);
         xls = objects[pY][pX];
         // }
+
 
         if (xls.equals("W")) {
             count++;
             for (int y1 = pY; y1 < pY + 1; y1++) {
                 for (int x1 = pX; x1 < pX + 1; x1++) {
                     objects[y1][x1] = "G";
-
                 }
             }
         }
+
     }
 
     //Нельзя выходить за рамки UwU
     public void checkCollisions() {
         //Проверка на выход за границы экрана
-        if (x[0] > Size) {
+        if(x[0] > Size) {
             inGame = false; //GAME OVER
         }
         if (x[0] < 0) {
