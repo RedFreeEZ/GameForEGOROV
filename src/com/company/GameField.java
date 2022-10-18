@@ -87,9 +87,12 @@ public class GameField extends JPanel implements ActionListener {
 
             for (int y1 = 0; y1 < 10; y1++) {
                 for (int x1 = 0; x1 < 10; x1++) {
+                    objects[1][0] = "G";
+                    objects[2][0] = "G";
                     switch (objects[y1][x1]) {
                         case "B":
                             g.setColor(new Color(246, 20, 79));
+
                             break;
                         case "W":
                             g.setColor(new Color(21, 172, 246));
