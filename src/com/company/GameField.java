@@ -216,7 +216,6 @@ public class GameField extends JPanel implements ActionListener {
             if (nexY < 9) {
                 nexX = ((x[0]) / DotSize);
                 nexY = ((y[0]) / DotSize + 1);
-                System.out.println(nexY);
                 xl = objects[nexY][nexX];
                 if (xl.equals("B")) {
                     IsStone = true;
